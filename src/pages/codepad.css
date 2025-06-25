@@ -1,0 +1,289 @@
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #0a0a23;
+  color: #e2e8f0;
+  scroll-behavior: smooth;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 1rem 5%;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+  z-index: 1000;
+}
+
+.navbar .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #00c6ff;
+  letter-spacing: 2px;
+  text-decoration: none;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.navbar ul li a {
+  color: #e2e8f0;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease-in-out, background 0.3s ease-in-out, padding 0.3s ease-in-out;
+}
+
+.navbar ul li a:hover,
+.navbar ul li a:focus {
+  color: #0a0a23;
+  background: #00c6ff;
+  padding: 0.2rem 0.5rem;
+  border-radius: 8px;
+  outline: none;
+}
+
+/* Codepad Container */
+.codepad-container {
+  max-width: 1200px;
+  margin: 60px auto 0; /* Account for fixed navbar */
+  padding: 3rem 1rem;
+}
+
+/* Hero Section */
+.codepad-hero {
+  text-align: center;
+  padding: 3rem 0;
+}
+
+.codepad-hero h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
+}
+
+.codepad-hero p {
+  font-size: 1.1rem;
+  color: #dddddd;
+  opacity: 0.8;
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.controls select,
+.controls button {
+  background: rgba(0, 0, 0, 0.6);
+  color: #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background 0.3s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.controls select:hover,
+.controls button:hover,
+.controls select:focus,
+.controls button:focus {
+  background: #00c6ff;
+  color: #0a0a23;
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+  outline: none;
+}
+
+.controls select {
+  appearance: none;
+  padding-right: 2rem;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23e2e8f0" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  background-size: 1rem;
+}
+
+/* Editor Section */
+.editor-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  padding: 0 1rem;
+}
+
+.editor {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.editor:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
+}
+
+.editor h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #00c6ff;
+  margin-bottom: 0.5rem;
+}
+
+.CodeMirror {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Output Section */
+.output-container {
+  margin: 3rem 1rem;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.output-container:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
+}
+
+.output-container h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #00c6ff;
+  margin-bottom: 0.5rem;
+}
+
+iframe {
+  background: #0a0a23;
+  border-radius: 8px;
+  min-height: 300px;
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1rem 0;
+  background: rgba(0, 0, 0, 0.6);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+footer p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #dddddd;
+  opacity: 0.8;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .codepad-container {
+    max-width: 95%;
+    padding: 2rem 0.5rem;
+  }
+
+  .navbar {
+    padding: 1rem 2.5%;
+  }
+
+  .navbar ul {
+    gap: 1rem;
+  }
+
+  .codepad-hero h1 {
+    font-size: 2rem;
+  }
+
+  .codepad-hero p {
+    font-size: 1rem;
+  }
+
+  .editor-container {
+    grid-template-columns: 1fr;
+    padding: 0 0.5rem;
+  }
+
+  .controls select,
+  .controls button {
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+  }
+
+  .output-container,
+  .editor {
+    margin: 1.5rem 0.5rem;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .codepad-hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .codepad-hero p {
+    font-size: 0.95rem;
+  }
+
+  .navbar .logo {
+    font-size: 1.3rem;
+  }
+
+  .navbar ul li a {
+    font-size: 0.9rem;
+  }
+
+  .controls {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .controls select,
+  .controls button {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .editor h3,
+  .output-container h3 {
+    font-size: 1rem;
+  }
+
+  footer p {
+    font-size: 0.85rem;
+  }
+}

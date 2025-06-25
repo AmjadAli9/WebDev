@@ -1,0 +1,446 @@
+<<<<<<< HEAD
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #0a0a23;
+  color: #ffffff;
+}
+
+/* Resources Container */
+.resources-container {
+  max-width: 1200px;
+  margin: 60px auto 0; /* Account for fixed navbar */
+  padding: 3rem 1rem;
+  text-align: center;
+  color: #ffffff;
+}
+
+/* Headings */
+h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+h2, .resource-card h3 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #00c6ff;
+  margin-bottom: 1rem;
+}
+
+/* Resource of the Day */
+.resource-of-the-day {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  padding: 1.5rem;
+  margin: 2rem auto;
+  border-radius: 10px;
+  font-size: 1.25rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.resource-of-the-day:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.8);
+}
+
+.resource-of-the-day a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+  border-bottom: 2px solid #00c6ff;
+  transition: color 0.3s ease-in-out, background 0.3s ease-in-out, padding 0.3s ease-in-out;
+}
+
+.resource-of-the-day a:hover, .resource-of-the-day a:focus {
+  color: #0a0a23;
+  background: #00c6ff;
+  padding: 0.2rem 0.5rem;
+  border-radius: 10px;
+  border-bottom: none;
+}
+
+/* Resource Cards Section */
+.resource-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem 1rem;
+}
+
+.resource-card {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.resource-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
+}
+
+.resource-card h3 {
+  font-size: 1.5rem;
+  color: #00c6ff;
+  margin-bottom: 1rem;
+}
+
+.resource-card p {
+  font-size: 1rem;
+  color: #dddddd;
+  margin-bottom: 1rem;
+}
+
+.resource-card a {
+  background: #00c6ff;
+  color: #0a0a23;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.resource-card a:hover, .resource-card a:focus {
+  background: #0a0a23;
+  color: #00c6ff;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+}
+
+/* Search Bar */
+.search-bar-container {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.search-bar {
+  max-width: 600px;
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  border-radius: 25px;
+  border: 1px solid #00c6ff;
+  background: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.search-bar::placeholder {
+  color: #888888;
+  font-style: italic;
+}
+
+.search-bar:focus {
+  outline: none;
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .resources-container {
+    max-width: 95%;
+    padding: 2rem 0.5rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2, .resource-card h3 {
+    font-size: 1.5rem;
+  }
+
+  .resource-card p {
+    font-size: 0.95rem;
+  }
+
+  .search-bar {
+    max-width: 90%;
+  }
+
+  .resource-cards {
+    grid-template-columns: 1fr;
+    padding: 1.5rem 0.5rem;
+  }
+
+  .resource-of-the-day {
+    font-size: 1.1rem;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2, .resource-card h3 {
+    font-size: 1.3rem;
+  }
+
+  .resource-card p {
+    font-size: 0.9rem;
+  }
+
+  .resource-card {
+    padding: 1rem;
+  }
+
+  .resource-card a {
+    padding: 0.5rem 1rem;
+  }
+
+  .search-bar {
+    padding: 0.75rem;
+  }
+=======
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #0a0a23;
+  color: #ffffff;
+}
+
+/* Resources Container */
+.resources-container {
+  max-width: 1200px;
+  margin: 60px auto 0; /* Account for fixed navbar */
+  padding: 3rem 1rem;
+  text-align: center;
+  color: #ffffff;
+}
+
+/* Headings */
+h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+h2, .resource-card h3 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #00c6ff;
+  margin-bottom: 1rem;
+}
+
+/* Resource of the Day */
+.resource-of-the-day {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  padding: 1.5rem;
+  margin: 2rem auto;
+  border-radius: 10px;
+  font-size: 1.25rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.resource-of-the-day:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.8);
+}
+
+.resource-of-the-day a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+  border-bottom: 2px solid #00c6ff;
+  transition: color 0.3s ease-in-out, background 0.3s ease-in-out, padding 0.3s ease-in-out;
+}
+
+.resource-of-the-day a:hover, .resource-of-the-day a:focus {
+  color: #0a0a23;
+  background: #00c6ff;
+  padding: 0.2rem 0.5rem;
+  border-radius: 10px;
+  border-bottom: none;
+}
+
+/* Resource Cards Section */
+.resource-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem 1rem;
+}
+
+.resource-card {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.resource-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.5);
+}
+
+.resource-card h3 {
+  font-size: 1.5rem;
+  color: #00c6ff;
+  margin-bottom: 1rem;
+}
+
+.resource-card p {
+  font-size: 1rem;
+  color: #dddddd;
+  margin-bottom: 1rem;
+}
+
+.resource-card a {
+  background: #00c6ff;
+  color: #0a0a23;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.resource-card a:hover, .resource-card a:focus {
+  background: #0a0a23;
+  color: #00c6ff;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+}
+
+/* Search Bar */
+.search-bar-container {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.search-bar {
+  max-width: 600px;
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  border-radius: 25px;
+  border: 1px solid #00c6ff;
+  background: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.search-bar::placeholder {
+  color: #888888;
+  font-style: italic;
+}
+
+.search-bar:focus {
+  outline: none;
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .resources-container {
+    max-width: 95%;
+    padding: 2rem 0.5rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2, .resource-card h3 {
+    font-size: 1.5rem;
+  }
+
+  .resource-card p {
+    font-size: 0.95rem;
+  }
+
+  .search-bar {
+    max-width: 90%;
+  }
+
+  .resource-cards {
+    grid-template-columns: 1fr;
+    padding: 1.5rem 0.5rem;
+  }
+
+  .resource-of-the-day {
+    font-size: 1.1rem;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2, .resource-card h3 {
+    font-size: 1.3rem;
+  }
+
+  .resource-card p {
+    font-size: 0.9rem;
+  }
+
+  .resource-card {
+    padding: 1rem;
+  }
+
+  .resource-card a {
+    padding: 0.5rem 1rem;
+  }
+
+  .search-bar {
+    padding: 0.75rem;
+  }
+>>>>>>> 9b2d469fd6f28892b7277d47845433741d5b49ba
+}

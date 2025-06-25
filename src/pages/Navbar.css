@@ -1,0 +1,229 @@
+<<<<<<< HEAD
+.edu-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  height: 60px;
+  font-family: 'Segoe UI', sans-serif;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: all 0.3s ease-in-out;
+}
+
+.edu-navbar.dark {
+  background-color: #111;
+  color: #fff;
+}
+
+.edu-navbar.light {
+  background-color: #fff;
+  color: #000;
+  border-bottom: 1px solid #ddd;
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: inherit;
+  text-decoration: none;
+}
+
+.logo span {
+  color: #38bdf8;
+}
+
+.navbar-center {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navbar-center a {
+  text-decoration: none;
+  color: inherit;
+  font-size: 1rem;
+  padding: 6px 12px;
+  border-radius: 5px;
+  transition: background 0.2s;
+}
+
+.navbar-center a:hover,
+.navbar-center a.active {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.search-box {
+  position: relative;
+  margin-right: 1rem;
+}
+
+.search-box input {
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: none;
+  background-color: #f1f5f9;
+  outline: none;
+  font-size: 0.9rem;
+}
+
+.search-box i {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  color: #555;
+}
+
+.toggle-mode {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: inherit;
+}
+
+.hamburger {
+  display: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar-center {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background-color: inherit;
+    width: 100%;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    border-top: 1px solid #ccc;
+  }
+
+  .navbar-center.open {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
+=======
+.edu-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  height: 60px;
+  font-family: 'Segoe UI', sans-serif;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: all 0.3s ease-in-out;
+}
+
+.edu-navbar.dark {
+  background-color: #111;
+  color: #fff;
+}
+
+.edu-navbar.light {
+  background-color: #fff;
+  color: #000;
+  border-bottom: 1px solid #ddd;
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: inherit;
+  text-decoration: none;
+}
+
+.logo span {
+  color: #38bdf8;
+}
+
+.navbar-center {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navbar-center a {
+  text-decoration: none;
+  color: inherit;
+  font-size: 1rem;
+  padding: 6px 12px;
+  border-radius: 5px;
+  transition: background 0.2s;
+}
+
+.navbar-center a:hover,
+.navbar-center a.active {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.search-box {
+  position: relative;
+  margin-right: 1rem;
+}
+
+.search-box input {
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: none;
+  background-color: #f1f5f9;
+  outline: none;
+  font-size: 0.9rem;
+}
+
+.search-box i {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  color: #555;
+}
+
+.toggle-mode {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: inherit;
+}
+
+.hamburger {
+  display: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar-center {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background-color: inherit;
+    width: 100%;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    border-top: 1px solid #ccc;
+  }
+
+  .navbar-center.open {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
+>>>>>>> 9b2d469fd6f28892b7277d47845433741d5b49ba

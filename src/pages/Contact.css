@@ -1,0 +1,168 @@
+<<<<<<< HEAD
+.contact-container {
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+    background: #0a192f;
+    padding: 50px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 50px auto;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+  }
+  
+  h1, h2 {
+    text-align: center;
+  }
+  
+  .creator-info {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .social-links a {
+    color: #00ffff;
+    margin: 0 10px;
+    text-decoration: none;
+    transition: 0.3s ease;
+  }
+  
+  .social-links a:hover {
+    color: #ff00ff;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  input, select, textarea {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background: #112240;
+    color: #fff;
+  }
+  
+  textarea {
+    resize: none;
+    height: 100px;
+  }
+  
+  .fancy-button {
+    background: linear-gradient(135deg, #00ffff, #ff00ff);
+    color: #0a192f;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .fancy-button:hover {
+    transform: scale(1.1);
+  }
+  
+  .easter-egg {
+    text-align: center;
+    margin-top: 20px;
+    cursor: pointer;
+    color: #ff00ff;
+    transition: color 0.3s ease;
+  }
+  
+  .easter-egg:hover {
+    color: #00ffff;
+  }
+  
+  .fact {
+    text-align: center;
+    margin-top: 10px;
+    font-style: italic;
+  }
+=======
+.contact-container {
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+    background: #0a192f;
+    padding: 50px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 50px auto;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+  }
+  
+  h1, h2 {
+    text-align: center;
+  }
+  
+  .creator-info {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .social-links a {
+    color: #00ffff;
+    margin: 0 10px;
+    text-decoration: none;
+    transition: 0.3s ease;
+  }
+  
+  .social-links a:hover {
+    color: #ff00ff;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  input, select, textarea {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background: #112240;
+    color: #fff;
+  }
+  
+  textarea {
+    resize: none;
+    height: 100px;
+  }
+  
+  .fancy-button {
+    background: linear-gradient(135deg, #00ffff, #ff00ff);
+    color: #0a192f;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .fancy-button:hover {
+    transform: scale(1.1);
+  }
+  
+  .easter-egg {
+    text-align: center;
+    margin-top: 20px;
+    cursor: pointer;
+    color: #ff00ff;
+    transition: color 0.3s ease;
+  }
+  
+  .easter-egg:hover {
+    color: #00ffff;
+  }
+  
+  .fact {
+    text-align: center;
+    margin-top: 10px;
+    font-style: italic;
+  }
+>>>>>>> 9b2d469fd6f28892b7277d47845433741d5b49ba
+  

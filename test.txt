@@ -1,0 +1,59 @@
+<<<<<<< HEAD
+// src/App.js
+import React from "react";
+import {  Route, Routes } from "react-router-dom";
+import Home from "/";
+import Code from "./pages/CodePad";
+import Tutorials from "./pages/Tutorial";
+import Resources from "./pages/Resources";
+import CommunityPage from "./pages/Community";
+import ContactPage from "./pages/Contact";
+
+
+const App = () => {
+  return (
+   
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/Codepad" element={<Code />} />
+        <Route path="/Learn" element={<Tutorials />} />
+        <Route path="/Resources" element={<Resources />} />
+        <Route path="/Community" element={<CommunityPage />} />
+        <Route path="/Contact" element={<ContactPage />} />
+        
+      </Routes>
+   
+  );
+};
+
+export default App;
+=======
+// src/App.js
+import React from "react";
+import {  Route, Routes } from "react-router-dom";
+import Home from "/";
+import Code from "./pages/CodePad";
+import Tutorials from "./pages/Tutorial";
+import Resources from "./pages/Resources";
+import CommunityPage from "./pages/Community";
+import ContactPage from "./pages/Contact";
+
+
+const App = () => {
+  return (
+   
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/Codepad" element={<Code />} />
+        <Route path="/Learn" element={<Tutorials />} />
+        <Route path="/Resources" element={<Resources />} />
+        <Route path="/Community" element={<CommunityPage />} />
+        <Route path="/Contact" element={<ContactPage />} />
+        
+      </Routes>
+   
+  );
+};
+
+export default App;
+>>>>>>> 9b2d469fd6f28892b7277d47845433741d5b49ba
