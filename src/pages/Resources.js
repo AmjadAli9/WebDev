@@ -39,6 +39,19 @@ const Resources = () => {
             link: "https://www.freecodecamp.org/learn/react/",
             rating: 4.8,
           },
+          {
+            title: "The Odin Project",
+            link: "https://www.theodinproject.com/paths/full-stack-javascript",
+            rating: 4.9,
+          },
+          {
+            title: "JavaScript30",
+            link: "https://javascript30.com/",
+            rating: 4.7,
+          },
+          { title: "CSS Tricks", link: "https://css-tricks.com/", rating: 4.8 },
+          {
+            title: "Frontend Mentor", link: "https://www.frontendmentor.io/", rating: 4.9 },
         ],
       },
       {
@@ -51,6 +64,11 @@ const Resources = () => {
           { title: "CodeSandbox", link: "https://codesandbox.io/", rating: 4.7 },
           { title: "CanIUse", link: "https://caniuse.com/", rating: 4.9 },
           { title: "Lighthouse", link: "https://developer.chrome.com/docs/lighthouse/overview/", rating: 4.8 },
+          { title: "WebPageTest", link: "https://www.webpagetest.org/", rating: 4.7 },
+          { title: "JSFiddle", link: "https://jsfiddle.net/", rating: 4.6 },
+          { title: "CodePen", link: "https://codepen.io/", rating: 4.8 },
+          { title: "DevTools (Chrome)", link: "https://developer.chrome.com/docs/devtools/", rating: 5 },
+          { title: "DevTools (Firefox)", link: "https://developer.mozilla.org/en-US/docs/Tools", rating: 4.9 },
         ],
       },
       {
@@ -60,6 +78,11 @@ const Resources = () => {
             title: "HTML Notes (PDF)",
             link: "https://drive.google.com/file/d/1BpV99BPGRtjEPFe2AH8Wh7gCum1kpA8J/view",
             rating: 5,
+          },
+          {
+            title: "JavaScript Notes (PDF)",
+            link: "https://drive.google.com/file/d/1rYk9jYk3b6U6X1F8F8F8F8F8F8F8F8F/view",
+            rating: 4.9,
           },
           {
             title: "CSS Notes (PDF)",
@@ -75,6 +98,21 @@ const Resources = () => {
             title: "HTML Handwritten Notes (CoderStar)",
             link: "https://coderstar.in/free-html-handwritten-notes/",
             rating: 4.7,
+          },
+          {
+            title: "CSS Handwritten Notes (CoderStar)",
+            link: "https://coderstar.in/free-css-handwritten-notes/",
+            rating: 4.8,
+          },
+          {
+            title: "JavaScript Handwritten Notes (CoderStar)",
+            link: "https://coderstar.in/free-javascript-handwritten-notes/",
+            rating: 4.9,
+          },
+          {
+            title: "React Handwritten Notes (CoderStar)",
+            link: "https://coderstar.in/free-react-handwritten-notes/",
+            rating: 4.8,
           },
           {
             title: "Web Development Notes (tutorialsduniya)",
@@ -176,6 +214,14 @@ const Resources = () => {
             link: "https://devhints.io/",
             rating: 4.8,
           },
+          { title: "JavaScript ES6 Cheat Sheet (DevHints)", link: "https://devhints.io/es6", rating: 4.7 },
+          { title: "Node.js Cheat Sheet (DevHints)", link: "https://devhints.io/nodejs", rating: 4.6 },
+          { title: "React Router Cheat Sheet (DevHints)", link: "https://devhints.io/react-router", rating: 4.7 },
+          { title: "Redux Cheat Sheet (DevHints)", link: "https://devhints.io/redux", rating: 4.8 },
+          { title: "TypeScript Cheat Sheet (DevHints)", link: "https://devhints.io/typescript", rating: 4.7 },
+          { title: "Python Cheat Sheet (DevHints)", link: "https://devhints.io/python", rating: 4.6 },
+          { title: "Django Cheat Sheet (DevHints)", link: "https://devhints.io/django", rating: 4.5 },
+          { title: "Flask Cheat Sheet (DevHints)", link: "https://devhints.io/flask", rating: 4.6 },
         ],
       },
     ],
@@ -192,7 +238,16 @@ const Resources = () => {
       "⚡ Optimize images to boost website performance.",
       "📚 Build projects to solidify your coding skills.",
       "🛠️ Master DevTools for debugging like a pro.",
-      "🌐 Explore CSS Grid for advanced layouts."
+      "🌐 Explore CSS Grid for advanced layouts.",
+      "🧩 Break problems into smaller, manageable pieces.",
+      "🖥️ Regularly update your development environment.",
+      "🌱 Stay curious and keep learning new technologies.",
+      "📝 Write clean, readable code with comments.",
+      "🔗 Network with other developers; community matters!",
+      "🎯 Focus on one technology at a time to avoid overwhelm.",
+      "📅 Set small, achievable goals for your learning journey.",
+      "🧑‍💻 Practice coding daily, even if just for 15 minutes.",
+      "📖 Read code written by experienced developers to learn best practices."
       ,
     ],
     []

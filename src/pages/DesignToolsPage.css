@@ -1,0 +1,177 @@
+/* =========================
+   Base Styles
+========================= */
+.devtools-page {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #0f172a;
+  color: #fff;
+  padding: 20px;
+  min-height: 100vh;
+  transition: background 0.3s, color 0.3s;
+}
+
+.devtools-page.dark {
+  background: #000;
+  color: #f5f5f5;
+}
+
+/* =========================
+   Section Cards
+========================= */
+.tool-card {
+  background: rgba(30, 41, 59, 0.9);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
+  margin-bottom: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tool-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+}
+
+.tool-card h2 {
+  font-size: 1.5rem;
+  color: #38bdf8;
+  margin-bottom: 15px;
+}
+
+/* =========================
+   Inputs & Textareas
+========================= */
+.tool-card input,
+.tool-card select,
+.tool-card textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  background: #1e293b;
+  color: #fff;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.tool-card input:focus,
+.tool-card select:focus,
+.tool-card textarea:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 8px #38bdf8;
+  outline: none;
+}
+
+.tool-card textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* =========================
+   Buttons
+========================= */
+.tool-card button {
+  background: #38bdf8;
+  color: #0f172a;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-right: 8px;
+}
+
+.tool-card button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px #38bdf8;
+}
+
+/* Danger Button */
+.tool-card button.danger {
+  background: #ef4444;
+  color: #fff;
+}
+
+.tool-card button.danger:hover {
+  box-shadow: 0 0 15px #ef4444;
+}
+
+/* Warning Button */
+.tool-card button.warning {
+  background: #facc15;
+  color: #0f172a;
+}
+
+.tool-card button.warning:hover {
+  box-shadow: 0 0 15px #facc15;
+}
+
+/* =========================
+   Server Status
+========================= */
+.server-status {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.server-status.online {
+  color: #22c55e;
+}
+
+.server-status.offline {
+  color: #ef4444;
+}
+
+/* =========================
+   Grid Layout
+========================= */
+.devtools-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .devtools-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* =========================
+   Scrollbars
+========================= */
+.tool-card textarea::-webkit-scrollbar {
+  width: 6px;
+}
+
+.tool-card textarea::-webkit-scrollbar-thumb {
+  background: #38bdf8;
+  border-radius: 3px;
+}
+
+/* =========================
+   Alerts (for JS feedback)
+========================= */
+.alert-popup {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #1e293b;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #38bdf8;
+  animation: fadeIn 0.3s ease, fadeOut 0.3s ease 3s forwards;
+  z-index: 1000;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; transform: translateY(-10px); }
+}
