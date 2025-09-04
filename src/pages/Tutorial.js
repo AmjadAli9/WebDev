@@ -352,14 +352,14 @@ function Tutorial() {
   const [searchQuery, setSearchQuery] = useState('');
   const [expandedTutorials, setExpandedTutorials] = useState({});
 
+  const categories = ['All', ...new Set(tutorials.map(t => t.category))];
+
   // Sync URL param with selected category
   useEffect(() => {
     if (category && categories.includes(category)) {
       setSelectedCategory(category);
     }
-  }, [category]);
-
-  const categories = ['All', ...new Set(tutorials.map(t => t.category))];
+  }, [category, categories]);
 
   // Filter tutorials by category and search query
   const filteredTutorials = tutorials

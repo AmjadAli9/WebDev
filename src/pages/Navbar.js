@@ -32,6 +32,8 @@ function Navbar() {
     { name: "Design Tools", path: "/designtoolspage" },
     { name: "Typing Tester", path: "/typingspeed" },
     { name: "Spot The Bug", path: "/spotthebug" },
+    { name: "AI Resources", path: "/ai-resource" },
+    { name: "Image Generator", path: "/image-generator" },
     { name: userName ? `${userName}'s Profile` : "Profile", path: "/profile" }, // New Profile Link
   ];
 

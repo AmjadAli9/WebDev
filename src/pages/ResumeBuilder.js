@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import jsPDF from "jspdf";
 import "./ResumePortfolio.css";
 
@@ -24,43 +24,7 @@ const ResumeBuilder = () => {
   const [preview, setPreview] = useState("");
   const [error, setError] = useState("");
 
-  useEffect(() => {
-    localStorage.setItem("resumeData", JSON.stringify(formData));
-    generatePreview();
-  }, [formData]);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleContactChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      contact: { ...prev.contact, [name]: value },
-    }));
-  };
-
-  const handleArrayChange = (e, section, index, field) => {
-    const newArray = [...formData[section]];
-    newArray[index][field] = e.target.value;
-    setFormData((prev) => ({ ...prev, [section]: newArray }));
-  };
-
-  const addEntry = (section) => {
-    setFormData((prev) => ({
-      ...prev,
-      [section]: [...prev[section], { title: "", company: "", duration: "", description: "", link: "" }],
-    }));
-  };
-
-  const removeEntry = (section, index) => {
-    const newArray = formData[section].filter((_, i) => i !== index);
-    setFormData((prev) => ({ ...prev, [section]: newArray }));
-  };
-
-  const generatePreview = () => {
+  const generatePreview = useCallback(() => {
     const {
       name,
       role,
@@ -117,6 +81,42 @@ const ResumeBuilder = () => {
     }
 
     setPreview(content);
+  }, [formData]);
+
+  useEffect(() => {
+    localStorage.setItem("resumeData", JSON.stringify(formData));
+    generatePreview();
+  }, [formData, generatePreview]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleContactChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      contact: { ...prev.contact, [name]: value },
+    }));
+  };
+
+  const handleArrayChange = (e, section, index, field) => {
+    const newArray = [...formData[section]];
+    newArray[index][field] = e.target.value;
+    setFormData((prev) => ({ ...prev, [section]: newArray }));
+  };
+
+  const addEntry = (section) => {
+    setFormData((prev) => ({
+      ...prev,
+      [section]: [...prev[section], { title: "", company: "", duration: "", description: "", link: "" }],
+    }));
+  };
+
+  const removeEntry = (section, index) => {
+    const newArray = formData[section].filter((_, i) => i !== index);
+    setFormData((prev) => ({ ...prev, [section]: newArray }));
   };
 
   const downloadResume = () => {
@@ -146,7 +146,7 @@ const ResumeBuilder = () => {
   // Ensure preview updates on initial load
   useEffect(() => {
     generatePreview();
-  }, []);
+  }, [generatePreview]);
 
   return (
     <div className="resume-page">

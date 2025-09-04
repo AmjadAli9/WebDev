@@ -1,6 +1,4 @@
-// src/pages/Resources.js
 import React, { useState, useEffect, useMemo } from "react";
-import { Link } from "react-router-dom";
 import "./Resources.css";
 
 const Resources = () => {
@@ -51,7 +49,10 @@ const Resources = () => {
           },
           { title: "CSS Tricks", link: "https://css-tricks.com/", rating: 4.8 },
           {
-            title: "Frontend Mentor", link: "https://www.frontendmentor.io/", rating: 4.9 },
+            title: "Frontend Mentor",
+            link: "https://www.frontendmentor.io/",
+            rating: 4.9,
+          },
         ],
       },
       {
@@ -63,12 +64,28 @@ const Resources = () => {
           { title: "Figma", link: "https://www.figma.com/", rating: 4.8 },
           { title: "CodeSandbox", link: "https://codesandbox.io/", rating: 4.7 },
           { title: "CanIUse", link: "https://caniuse.com/", rating: 4.9 },
-          { title: "Lighthouse", link: "https://developer.chrome.com/docs/lighthouse/overview/", rating: 4.8 },
-          { title: "WebPageTest", link: "https://www.webpagetest.org/", rating: 4.7 },
+          {
+            title: "Lighthouse",
+            link: "https://developer.chrome.com/docs/lighthouse/overview/",
+            rating: 4.8,
+          },
+          {
+            title: "WebPageTest",
+            link: "https://www.webpagetest.org/",
+            rating: 4.7,
+          },
           { title: "JSFiddle", link: "https://jsfiddle.net/", rating: 4.6 },
           { title: "CodePen", link: "https://codepen.io/", rating: 4.8 },
-          { title: "DevTools (Chrome)", link: "https://developer.chrome.com/docs/devtools/", rating: 5 },
-          { title: "DevTools (Firefox)", link: "https://developer.mozilla.org/en-US/docs/Tools", rating: 4.9 },
+          {
+            title: "DevTools (Chrome)",
+            link: "https://developer.chrome.com/docs/devtools/",
+            rating: 5,
+          },
+          {
+            title: "DevTools (Firefox)",
+            link: "https://developer.mozilla.org/en-US/docs/Tools",
+            rating: 4.9,
+          },
         ],
       },
       {
@@ -214,14 +231,46 @@ const Resources = () => {
             link: "https://devhints.io/",
             rating: 4.8,
           },
-          { title: "JavaScript ES6 Cheat Sheet (DevHints)", link: "https://devhints.io/es6", rating: 4.7 },
-          { title: "Node.js Cheat Sheet (DevHints)", link: "https://devhints.io/nodejs", rating: 4.6 },
-          { title: "React Router Cheat Sheet (DevHints)", link: "https://devhints.io/react-router", rating: 4.7 },
-          { title: "Redux Cheat Sheet (DevHints)", link: "https://devhints.io/redux", rating: 4.8 },
-          { title: "TypeScript Cheat Sheet (DevHints)", link: "https://devhints.io/typescript", rating: 4.7 },
-          { title: "Python Cheat Sheet (DevHints)", link: "https://devhints.io/python", rating: 4.6 },
-          { title: "Django Cheat Sheet (DevHints)", link: "https://devhints.io/django", rating: 4.5 },
-          { title: "Flask Cheat Sheet (DevHints)", link: "https://devhints.io/flask", rating: 4.6 },
+          {
+            title: "JavaScript ES6 Cheat Sheet (DevHints)",
+            link: "https://devhints.io/es6",
+            rating: 4.7,
+          },
+          {
+            title: "Node.js Cheat Sheet (DevHints)",
+            link: "https://devhints.io/nodejs",
+            rating: 4.6,
+          },
+          {
+            title: "React Router Cheat Sheet (DevHints)",
+            link: "https://devhints.io/react-router",
+            rating: 4.7,
+          },
+          {
+            title: "Redux Cheat Sheet (DevHints)",
+            link: "https://devhints.io/redux",
+            rating: 4.8,
+          },
+          {
+            title: "TypeScript Cheat Sheet (DevHints)",
+            link: "https://devhints.io/typescript",
+            rating: 4.7,
+          },
+          {
+            title: "Python Cheat Sheet (DevHints)",
+            link: "https://devhints.io/python",
+            rating: 4.6,
+          },
+          {
+            title: "Django Cheat Sheet (DevHints)",
+            link: "https://devhints.io/django",
+            rating: 4.5,
+          },
+          {
+            title: "Flask Cheat Sheet (DevHints)",
+            link: "https://devhints.io/flask",
+            rating: 4.6,
+          },
         ],
       },
     ],
@@ -247,8 +296,7 @@ const Resources = () => {
       "🎯 Focus on one technology at a time to avoid overwhelm.",
       "📅 Set small, achievable goals for your learning journey.",
       "🧑‍💻 Practice coding daily, even if just for 15 minutes.",
-      "📖 Read code written by experienced developers to learn best practices."
-      ,
+      "📖 Read code written by experienced developers to learn best practices.",
     ],
     []
   );
@@ -303,7 +351,12 @@ const Resources = () => {
         className="search-bar"
       />
       {search && (
-        <button onClick={() => { setSearch(""); setFilteredResources(resources); }}>
+        <button
+          onClick={() => {
+            setSearch("");
+            setFilteredResources(resources);
+          }}
+        >
           ❌ Clear Search
         </button>
       )}
@@ -314,7 +367,11 @@ const Resources = () => {
       {/* Resource of the Day */}
       <div className="resource-of-the-day">
         🌟 Resource of the Day:{" "}
-        <a href={resourceOfTheDay.link} target="_blank" rel="noopener noreferrer">
+        <a
+          href={resourceOfTheDay.link}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           {resourceOfTheDay.title}
         </a>
       </div>
@@ -334,7 +391,9 @@ const Resources = () => {
               >
                 <span>{highlightText(item.title, search)}</span>
                 <span>⭐ {item.rating}</span>
-                <button onClick={() => navigator.clipboard.writeText(item.link)}>
+                <button
+                  onClick={() => navigator.clipboard.writeText(item.link)}
+                >
                   🔗 Copy Link
                 </button>
               </a>

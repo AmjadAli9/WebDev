@@ -211,4 +211,60 @@ export default function Profile() {
       </div>
     </div>
   );
+}import React, { useState, useEffect, useMemo } from "react"; // Add useMemo
+import CalendarHeatmap from "react-calendar-heatmap";
+import "react-calendar-heatmap/dist/styles.css";
+import { format, subDays } from "date-fns";
+import "./Profile.css";
+import { useNavigate } from "react-router-dom";
+
+export default function Profile() {
+  const navigate = useNavigate();
+  const today = useMemo(() => new Date(), []); // Stabilize today with useMemo
+
+  const [profile, setProfile] = useState(null);
+  const [activity, setActivity] = useState([]);
+
+  // Load user and activity
+  useEffect(() => {
+    const loadProfile = () => {
+      const loggedUser = JSON.parse(localStorage.getItem("webdevhub_user"));
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+      const savedActivity = JSON.parse(localStorage.getItem("userActivity"));
+
+      if (!loggedUser) {
+        navigate("/loading");
+        return;
+      }
+
+      // Merge with users array if exists
+      const currentUser =
+        users.find((u) => u.email === loggedUser.email) || loggedUser;
+      setProfile({ ...currentUser });
+
+      // Load activity
+      if (savedActivity) {
+        setActivity(savedActivity);
+      } else {
+        const defaultActivity = Array.from({ length: 90 }, (_, i) => ({
+          date: format(subDays(today, i), "yyyy-MM-dd"),
+          count: 0,
+        })).reverse();
+        setActivity(defaultActivity);
+      }
+    };
+
+    loadProfile();
+  }, [navigate, today]); // today is now stable
+
+  // ... rest of the code remains unchanged ...
+  // (Handle input changes, profile picture upload, save profile, etc.)
+
+  if (!profile) return <div className="loading">Loading profile...</div>;
+
+  return (
+    <div className="profile-container">
+      {/* ... rest of the JSX remains unchanged ... */}
+    </div>
+  );
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import "./TypingSpeed.css";
 
 /**
@@ -75,7 +75,6 @@ export default function TypingCodePractice() {
   const [mode, setMode] = useState("code");
   const [duration, setDuration] = useState(60);
   const [text, setText] = useState(() => getRandomSnippet("code"));
-  const [index, setIndex] = useState(0);
   const [typed, setTyped] = useState([]);
   const [started, setStarted] = useState(false);
   const [timeLeft, setTimeLeft] = useState(duration);
@@ -92,47 +91,17 @@ export default function TypingCodePractice() {
   const inputRef = useRef(null);
   const timerRef = useRef(null);
 
-  useEffect(() => {
-    resetSession();
-  }, [mode, duration]);
-
-  useEffect(() => {
-    setTimeLeft(duration);
-  }, [duration]);
-
-  useEffect(() => {
-    if (!started) return;
-    if (timeLeft <= 0) {
-      finishSession();
-      return;
-    }
-    timerRef.current = setTimeout(() => setTimeLeft(t => t - 1), 1000);
-    return () => clearTimeout(timerRef.current);
-  }, [started, timeLeft]);
-
-  const totalTyped = typed.length;
-  const correctCount = typed.reduce((acc, t, i) => acc + (t === text[i] ? 1 : 0), 0);
-  const elapsed = duration - timeLeft;
-  const cpm = elapsed > 0 ? Math.round((correctCount / elapsed) * 60) : 0;
-  const wpm = Math.round(cpm / 5);
-  const accuracy = totalTyped > 0 ? Math.round((correctCount / totalTyped) * 100) : 100;
-
-  useEffect(() => {
-    if (inputRef.current) inputRef.current.focus();
-  }, []);
-
-  function resetSession() {
+  const resetSession = useCallback(() => {
     clearTimeout(timerRef.current);
     setText(getRandomSnippet(mode));
-    setIndex(0);
     setTyped([]);
     setStarted(false);
     setTimeLeft(duration);
     setErrors(0);
     setTimeout(() => inputRef.current && inputRef.current.focus(), 10);
-  }
+  }, [mode, duration]);
 
-  function finishSession() {
+  const finishSession = useCallback(() => {
     setStarted(false);
     clearTimeout(timerRef.current);
     const newEntry = {
@@ -146,7 +115,36 @@ export default function TypingCodePractice() {
     const next = [newEntry, ...history].slice(0, 20);
     setHistory(next);
     localStorage.setItem("tcp_history", JSON.stringify(next));
-  }
+  }, [history, wpm, cpm, accuracy, errors, duration]);
+
+  useEffect(() => {
+    resetSession();
+  }, [mode, duration, resetSession]);
+
+  useEffect(() => {
+    setTimeLeft(duration);
+  }, [duration]);
+
+  useEffect(() => {
+    if (!started) return;
+    if (timeLeft <= 0) {
+      finishSession();
+      return;
+    }
+    timerRef.current = setTimeout(() => setTimeLeft(t => t - 1), 1000);
+    return () => clearTimeout(timerRef.current);
+  }, [started, timeLeft, finishSession]);
+
+  const totalTyped = typed.length;
+  const correctCount = typed.reduce((acc, t, i) => acc + (t === text[i] ? 1 : 0), 0);
+  const elapsed = duration - timeLeft;
+  const cpm = elapsed > 0 ? Math.round((correctCount / elapsed) * 60) : 0;
+  const wpm = Math.round(cpm / 5);
+  const accuracy = totalTyped > 0 ? Math.round((correctCount / totalTyped) * 100) : 100;
+
+  useEffect(() => {
+    if (inputRef.current) inputRef.current.focus();
+  }, []);
 
   function handleKey(e) {
     if (!started) setStarted(true);
@@ -155,7 +153,7 @@ export default function TypingCodePractice() {
       e.preventDefault();
       if (typed.length > 0) {
         setTyped(prev => prev.slice(0, -1));
-        setIndex(i => Math.max(0, i - 1));
+        setTyped(prev => prev.slice(0, -1));
       }
       return;
     }
@@ -168,7 +166,6 @@ export default function TypingCodePractice() {
     if (char.length !== 1) return;
 
     setTyped(prev => [...prev, char]);
-    setIndex(i => i + 1);
 
     const expected = text[typed.length];
     if (char !== expected) {
@@ -179,7 +176,6 @@ export default function TypingCodePractice() {
       const nextText = getRandomSnippet(mode);
       setTimeout(() => {
         setText(nextText);
-        setIndex(0);
         setTyped([]);
       }, 40);
     }
@@ -191,7 +187,6 @@ export default function TypingCodePractice() {
 
   function handleNextSnippet() {
     setText(getRandomSnippet(mode));
-    setIndex(0);
     setTyped([]);
   }
 

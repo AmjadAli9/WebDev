@@ -19,6 +19,9 @@ import DevToolsPage from "./pages/DevToolsPage";
 import DesignToolsPage from "./pages/DesignToolsPage";
 import TypingSpeed from "./pages/TypingSpeed";
 import SpotTheBug from "./pages/SpotTheBug";
+import AIResource from "./pages/AI Resource";
+import ImageGenerator from "./pages/ImageGenerator";
+import "./App.css"; 
 import { ProtectedRoute } from "./utils/auth";
 
 function App() {
@@ -53,6 +56,8 @@ function App() {
       <Route path="/designtoolspage" element={<ProtectedRoute>{withNavbar(DesignToolsPage)}</ProtectedRoute>} />
       <Route path="/typingspeed" element={<ProtectedRoute>{withNavbar(TypingSpeed)}</ProtectedRoute>} />
       <Route path="/spotthebug" element={<ProtectedRoute>{withNavbar(SpotTheBug)}</ProtectedRoute>} />
+      <Route path="/ai-resource" element={<ProtectedRoute>{withNavbar(require("./pages/AI Resource").default)}</ProtectedRoute>} />
+      <Route path="/image-generator" element={<ProtectedRoute>{withNavbar(require("./pages/ImageGenerator").default)}</ProtectedRoute>} />
 
       {/* Fallback */}
       <Route path="*" element={<div>404 - Page Not Found</div>} />

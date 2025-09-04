@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect, useCallback } from "react";
 import CodeMirror from "@uiw/react-codemirror";
 import { html } from "@codemirror/lang-html";
 import { css } from "@codemirror/lang-css";
@@ -11,18 +10,12 @@ import { php } from "@codemirror/lang-php";
 import "./codepad.css";
 
 const CodePad = () => {
-  const navigate = useNavigate();
   const [code, setCode] = useState("");
   const [language, setLanguage] = useState("JavaScript");
   const [output, setOutput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  // Update output based on language
-  useEffect(() => {
-    executeCode();
-  }, [code, language]);
-
-  const executeCode = async () => {
+  const executeCode = useCallback(async () => {
     if (!code.trim()) {
       setOutput("Write some code to see output...");
       return;
@@ -66,19 +59,52 @@ const CodePad = () => {
             clear: () => logs.length = 0
           };
 
-          // Create safe execution environment
-          const func = new Function('console', 'alert', 'prompt', `
-            try {
-              ${code}
-            } catch (error) {
-              console.error(error.message);
-            }
-          `);
+          // Create a sandboxed iframe for safe execution
+          const iframe = document.createElement('iframe');
+          iframe.style.display = 'none';
+          document.body.appendChild(iframe);
           
-          func(mockConsole, 
-            (msg) => logs.push(`Alert: ${msg}`),
-            (msg) => logs.push(`Prompt: ${msg}`)
-          );
+          const scriptContent = `
+            <script>
+              const console = {
+                log: (...args) => window.parent.postMessage({ type: 'log', data: args.join(' ') }, '*'),
+                error: (...args) => window.parent.postMessage({ type: 'error', data: 'Error: ' + args.join(' ') }, '*'),
+                warn: (...args) => window.parent.postMessage({ type: 'warn', data: 'Warning: ' + args.join(' ') }, '*'),
+                info: (...args) => window.parent.postMessage({ type: 'info', data: 'Info: ' + args.join(' ') }, '*'),
+                clear: () => window.parent.postMessage({ type: 'clear', data: '' }, '*')
+              };
+              const alert = (msg) => window.parent.postMessage({ type: 'alert', data: 'Alert: ' + msg }, '*');
+              const prompt = (msg) => window.parent.postMessage({ type: 'prompt', data: 'Prompt: ' + msg }, '*');
+              try {
+                ${code}
+              } catch (error) {
+                window.parent.postMessage({ type: 'error', data: 'Error: ' + error.message }, '*');
+              }
+            </script>
+          `;
+          
+          iframe.contentWindow.document.open();
+          iframe.contentWindow.document.write(scriptContent);
+          iframe.contentWindow.document.close();
+
+          const messageHandler = (event) => {
+            if (event.data.type === 'log' || event.data.type === 'error' || 
+                event.data.type === 'warn' || event.data.type === 'info' || 
+                event.data.type === 'alert' || event.data.type === 'prompt') {
+              logs.push(event.data.data);
+            }
+            if (event.data.type === 'clear') {
+              logs.length = 0;
+            }
+          };
+
+          window.addEventListener('message', messageHandler);
+          
+          // Wait briefly to collect messages
+          await new Promise(resolve => setTimeout(resolve, 100));
+          
+          window.removeEventListener('message', messageHandler);
+          document.body.removeChild(iframe);
           
           result = logs.join('\n');
           setOutput(result || "Code executed successfully (no console output)");
@@ -130,14 +156,19 @@ const CodePad = () => {
         }
       }
       else {
-        setOutput(`${language} execution not supported in browser.\nThis is a display-only editor.\n\nTo run ${language} code, you would need:\n- Local development environment\n- ${getLanguageRequirements(language)}`);
+        setOutput(`${language} execution not supported in browser.\nThis is a display-only editor.\n\nTo run ${language} code, you would need:\n- ${getLanguageRequirements(language)}`);
       }
     } catch (error) {
       setOutput(`Error: ${error.message}`);
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [code, language]);
+
+  // Update output based on language
+  useEffect(() => {
+    executeCode();
+  }, [code, language, executeCode]);
 
   const simulatePythonExecution = (code) => {
     const lines = code.split('\n');
