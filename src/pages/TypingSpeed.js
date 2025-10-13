@@ -7,7 +7,9 @@ import "./TypingSpeed.css";
  */
 
 const DEFAULT_SNIPPETS = [
-  // WebDev Hub–style random lines and paragraphs
+  'start() { console.log("Hello, WebDev Hub!"); }',
+  `function fetchData(url) { return fetch(url).then(res => res.json()); }`,
+  `const [state, setState] = useState(initialValue);`,
   `Always remember: clean code is better than clever code.`,
   `Optimize your React components to avoid unnecessary re-renders.`,
   `Use semantic HTML for better accessibility and SEO support.`,
@@ -39,7 +41,7 @@ const DEFAULT_SNIPPETS = [
 ];
 
 function symbolsify(base) {
-  const insert = ['=>', '===', '!==', '&&', '||', '::', '++', '--', '/* */', '<!-- -->', '< />', '{}', '[]', '()', ';', ':'];
+  const insert = ["=>", "===", "!==", "&&", "||", "::", "++", "--", "/* */", "<!-- -->", "< />", "{}", "[]", "()", ";", ":"];
   let s = base;
   for (let i = 0; i < 6; i++) {
     const idx = Math.floor(Math.random() * s.length);
@@ -91,6 +93,14 @@ export default function TypingCodePractice() {
   const inputRef = useRef(null);
   const timerRef = useRef(null);
 
+  // Stats (must be declared before finishSession)
+  const totalTyped = typed.length;
+  const correctCount = typed.reduce((acc, t, i) => acc + (t === text[i] ? 1 : 0), 0);
+  const elapsed = duration - timeLeft;
+  const cpm = elapsed > 0 ? Math.round((correctCount / elapsed) * 60) : 0;
+  const wpm = Math.round(cpm / 5);
+  const accuracy = totalTyped > 0 ? Math.round((correctCount / totalTyped) * 100) : 100;
+
   const resetSession = useCallback(() => {
     clearTimeout(timerRef.current);
     setText(getRandomSnippet(mode));
@@ -110,7 +120,7 @@ export default function TypingCodePractice() {
       cpm,
       accuracy,
       errors,
-      duration
+      duration,
     };
     const next = [newEntry, ...history].slice(0, 20);
     setHistory(next);
@@ -131,16 +141,9 @@ export default function TypingCodePractice() {
       finishSession();
       return;
     }
-    timerRef.current = setTimeout(() => setTimeLeft(t => t - 1), 1000);
+    timerRef.current = setTimeout(() => setTimeLeft((t) => t - 1), 1000);
     return () => clearTimeout(timerRef.current);
   }, [started, timeLeft, finishSession]);
-
-  const totalTyped = typed.length;
-  const correctCount = typed.reduce((acc, t, i) => acc + (t === text[i] ? 1 : 0), 0);
-  const elapsed = duration - timeLeft;
-  const cpm = elapsed > 0 ? Math.round((correctCount / elapsed) * 60) : 0;
-  const wpm = Math.round(cpm / 5);
-  const accuracy = totalTyped > 0 ? Math.round((correctCount / totalTyped) * 100) : 100;
 
   useEffect(() => {
     if (inputRef.current) inputRef.current.focus();
@@ -152,8 +155,7 @@ export default function TypingCodePractice() {
     if (e.key === "Backspace") {
       e.preventDefault();
       if (typed.length > 0) {
-        setTyped(prev => prev.slice(0, -1));
-        setTyped(prev => prev.slice(0, -1));
+        setTyped((prev) => prev.slice(0, -1));
       }
       return;
     }
@@ -165,11 +167,11 @@ export default function TypingCodePractice() {
     }
     if (char.length !== 1) return;
 
-    setTyped(prev => [...prev, char]);
+    setTyped((prev) => [...prev, char]);
 
     const expected = text[typed.length];
     if (char !== expected) {
-      setErrors(n => n + 1);
+      setErrors((n) => n + 1);
     }
 
     if (typed.length + 1 >= text.length) {
@@ -198,7 +200,7 @@ export default function TypingCodePractice() {
       cpm,
       accuracy,
       errors,
-      mode
+      mode,
     };
     const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
     const a = document.createElement("a");
@@ -226,7 +228,7 @@ export default function TypingCodePractice() {
         <div className="tcp-controls">
           <div className="ctrl-group">
             <label>Mode</label>
-            <select value={mode} onChange={e => setMode(e.target.value)}>
+            <select value={mode} onChange={(e) => setMode(e.target.value)}>
               <option value="code">Code & Tips</option>
               <option value="symbols">Symbols-focused</option>
               <option value="random">Random Paragraph</option>
@@ -235,7 +237,7 @@ export default function TypingCodePractice() {
 
           <div className="ctrl-group">
             <label>Time</label>
-            <select value={duration} onChange={e => setDuration(Number(e.target.value))}>
+            <select value={duration} onChange={(e) => setDuration(Number(e.target.value))}>
               <option value={15}>15s</option>
               <option value={30}>30s</option>
               <option value={60}>60s</option>
@@ -245,14 +247,18 @@ export default function TypingCodePractice() {
 
           <div className="ctrl-group">
             <label>Theme</label>
-            <button className="theme-toggle" onClick={() => setThemeDark(d => !d)}>
+            <button className="theme-toggle" onClick={() => setThemeDark((d) => !d)}>
               {themeDark ? "Dark" : "Light"}
             </button>
           </div>
 
           <div className="ctrl-group">
-            <button className="tcp-btn" onClick={resetSession}>Restart</button>
-            <button className="tcp-btn ghost" onClick={handleNextSnippet}>Next snippet</button>
+            <button className="tcp-btn" onClick={resetSession}>
+              Restart
+            </button>
+            <button className="tcp-btn ghost" onClick={handleNextSnippet}>
+              Next snippet
+            </button>
           </div>
         </div>
       </div>
@@ -260,7 +266,7 @@ export default function TypingCodePractice() {
       <div className="tcp-main">
         <div className="typing-area" onClick={() => inputRef.current && inputRef.current.focus()}>
           <div className="typing-text" aria-hidden>
-            {chars.map(c => (
+            {chars.map((c) => (
               <span key={c.i} className={`char ${c.status}`}>
                 {c.ch === "\n" ? <span className="nl">↩</span> : c.ch === "\t" ? <span className="nl">⇥</span> : c.ch}
               </span>
@@ -277,11 +283,26 @@ export default function TypingCodePractice() {
         </div>
 
         <aside className="tcp-stats">
-          <div className="stat"><div className="label">Time</div><div className="value">{formatTime(timeLeft)}</div></div>
-          <div className="stat"><div className="label">WPM</div><div className="value">{wpm}</div></div>
-          <div className="stat"><div className="label">CPM</div><div className="value">{cpm}</div></div>
-          <div className="stat"><div className="label">Accuracy</div><div className="value">{accuracy}%</div></div>
-          <div className="stat"><div className="label">Errors</div><div className="value error">{errors}</div></div>
+          <div className="stat">
+            <div className="label">Time</div>
+            <div className="value">{formatTime(timeLeft)}</div>
+          </div>
+          <div className="stat">
+            <div className="label">WPM</div>
+            <div className="value">{wpm}</div>
+          </div>
+          <div className="stat">
+            <div className="label">CPM</div>
+            <div className="value">{cpm}</div>
+          </div>
+          <div className="stat">
+            <div className="label">Accuracy</div>
+            <div className="value">{accuracy}%</div>
+          </div>
+          <div className="stat">
+            <div className="label">Errors</div>
+            <div className="value error">{errors}</div>
+          </div>
 
           <div className="progress-wrap">
             <div className="progress" style={{ width: `${Math.min(100, (elapsed / duration) * 100)}%` }} />
@@ -299,7 +320,14 @@ export default function TypingCodePractice() {
               ))}
             </ul>
             <div className="history-actions">
-              <button onClick={() => { localStorage.removeItem("tcp_history"); setHistory([]); }}>Clear</button>
+              <button
+                onClick={() => {
+                  localStorage.removeItem("tcp_history");
+                  setHistory([]);
+                }}
+              >
+                Clear
+              </button>
               <button onClick={handleExportResults}>Export</button>
             </div>
           </div>

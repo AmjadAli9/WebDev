@@ -14,13 +14,12 @@ import Community from "./pages/Community";
 import DevChallenges from "./pages/DevChallenges";
 import ProjectIdea from "./pages/ProjectIdea";
 import ResumeBuilder from "./pages/ResumeBuilder";
-import PortfolioGenerator from "./pages/PortfolioGenerator";
 import DevToolsPage from "./pages/DevToolsPage";
 import DesignToolsPage from "./pages/DesignToolsPage";
 import TypingSpeed from "./pages/TypingSpeed";
 import SpotTheBug from "./pages/SpotTheBug";
 import AIResource from "./pages/AI Resource";
-import ImageGenerator from "./pages/ImageGenerator";
+import Tutor from "./pages/Tutor";
 import "./App.css"; 
 import { ProtectedRoute } from "./utils/auth";
 
@@ -51,13 +50,12 @@ function App() {
       <Route path="/devchallenges" element={<ProtectedRoute>{withNavbar(DevChallenges)}</ProtectedRoute>} />
       <Route path="/project-idea" element={<ProtectedRoute>{withNavbar(ProjectIdea)}</ProtectedRoute>} />
       <Route path="/resume-builder" element={<ProtectedRoute>{withNavbar(ResumeBuilder)}</ProtectedRoute>} />
-      <Route path="/portfolio-generator" element={<ProtectedRoute>{withNavbar(PortfolioGenerator)}</ProtectedRoute>} />
       <Route path="/devtoolspage" element={<ProtectedRoute>{withNavbar(DevToolsPage)}</ProtectedRoute>} />
       <Route path="/designtoolspage" element={<ProtectedRoute>{withNavbar(DesignToolsPage)}</ProtectedRoute>} />
       <Route path="/typingspeed" element={<ProtectedRoute>{withNavbar(TypingSpeed)}</ProtectedRoute>} />
       <Route path="/spotthebug" element={<ProtectedRoute>{withNavbar(SpotTheBug)}</ProtectedRoute>} />
       <Route path="/ai-resource" element={<ProtectedRoute>{withNavbar(require("./pages/AI Resource").default)}</ProtectedRoute>} />
-      <Route path="/image-generator" element={<ProtectedRoute>{withNavbar(require("./pages/ImageGenerator").default)}</ProtectedRoute>} />
+      <Route path="/tutor" element={<ProtectedRoute>{withNavbar(Tutor)}</ProtectedRoute>} />
 
       {/* Fallback */}
       <Route path="*" element={<div>404 - Page Not Found</div>} />

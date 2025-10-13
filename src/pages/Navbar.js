@@ -1,6 +1,11 @@
-// src/pages/Navbar.js
+
 import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import {
+  FaHome, FaCode, FaBookOpen, FaLayerGroup, FaUserGraduate, FaUsers, FaPuzzlePiece,
+  FaLightbulb, FaFileAlt, FaBook, FaTools, FaPalette, FaKeyboard, FaBug, FaRobot, FaImage, FaRocket, FaUser} from "react-icons/fa";
+
+import { FaSearch, FaMoon, FaSun, FaBars } from "react-icons/fa";
 import "./Navbar.css";
 
 function Navbar() {
@@ -18,23 +23,22 @@ function Navbar() {
   }, []);
 
   const pages = [
-    { name: "Home", path: "/home" },
-    { name: "CodePad", path: "/codepad" },
-    { name: "Learn", path: "/tutorial" },
-    { name: "Resources", path: "/resources" },
-    { name: "Prep", path: "/interview-prep" },
-    { name: "Community", path: "/community" },
-    { name: "Challenges", path: "/devchallenges" },
-    { name: "Project Ideas", path: "/project-idea" },
-    { name: "Resume Builder", path: "/resume-builder" },
-    { name: "Portfolio Generator", path: "/portfolio-generator" },
-    { name: "Dev Tools", path: "/devtoolspage" },
-    { name: "Design Tools", path: "/designtoolspage" },
-    { name: "Typing Tester", path: "/typingspeed" },
-    { name: "Spot The Bug", path: "/spotthebug" },
-    { name: "AI Resources", path: "/ai-resource" },
-    { name: "Image Generator", path: "/image-generator" },
-    { name: userName ? `${userName}'s Profile` : "Profile", path: "/profile" }, // New Profile Link
+    { name: "Home", path: "/home", icon: <FaHome /> },
+    { name: "CodePad", path: "/codepad", icon: <FaCode /> },
+    { name: "Learn", path: "/tutorial", icon: <FaBookOpen /> },
+    { name: "Resources", path: "/resources", icon: <FaLayerGroup /> },
+    { name: "Prep", path: "/interview-prep", icon: <FaUserGraduate /> },
+    { name: "Community", path: "/community", icon: <FaUsers /> },
+    { name: "Challenges", path: "/devchallenges", icon: <FaPuzzlePiece /> },
+    { name: "Project Ideas", path: "/project-idea", icon: <FaLightbulb /> },
+    { name: "Resume Builder", path: "/resume-builder", icon: <FaFileAlt /> },
+    { name: "Dev Tools", path: "/devtoolspage", icon: <FaTools /> },
+    { name: "Design Tools", path: "/designtoolspage", icon: <FaPalette /> },
+    { name: "Typing Tester", path: "/typingspeed", icon: <FaKeyboard /> },
+    { name: "Spot The Bug", path: "/spotthebug", icon: <FaBug /> },
+    { name: "AI Resources", path: "/ai-resource", icon: <FaRobot /> },
+    { name: "Tutor", path: "/tutor", icon: <FaImage /> },
+    { name: userName ? `${userName}'s Profile` : "Profile", path: "/profile", icon: <FaUser /> },
   ];
 
   const toggleMode = () => setDarkMode(!darkMode);
@@ -55,16 +59,20 @@ function Navbar() {
 
   return (
     <nav className={`edu-navbar ${darkMode ? "dark" : "light"}`}>
-      {/* Center links */}
       <div className={`navbar-center ${menuOpen ? "open" : ""}`}>
         {pages.map((page, index) => (
-          <NavLink key={index} to={page.path}>
-            {page.name}
+          <NavLink
+            key={index}
+            to={page.path}
+            className={({ isActive }) => (isActive ? "active" : "")}
+            onClick={() => setMenuOpen(false)}
+          >
+            <span className="nav-icon">{page.icon}</span>
+            <span className="nav-label">{page.name}</span>
           </NavLink>
         ))}
       </div>
 
-      {/* Right side */}
       <div className="navbar-right">
         <form className="search-box" onSubmit={handleSearch}>
           <input
@@ -74,16 +82,16 @@ function Navbar() {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
           <button type="submit">
-            <i className="fas fa-search"></i>
+            <FaSearch />
           </button>
         </form>
 
         <button onClick={toggleMode} className="toggle-mode">
-          {darkMode ? <i className="fas fa-moon"></i> : <i className="fas fa-sun"></i>}
+          {darkMode ? <FaMoon /> : <FaSun />}
         </button>
 
         <div className="hamburger" onClick={toggleMenu}>
-          <i className="fas fa-bars"></i>
+          <FaBars />
         </div>
       </div>
     </nav>
