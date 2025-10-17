@@ -1,11 +1,28 @@
-
 import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import {
-  FaHome, FaCode, FaBookOpen, FaLayerGroup, FaUserGraduate, FaUsers, FaPuzzlePiece,
-  FaLightbulb, FaFileAlt, FaBook, FaTools, FaPalette, FaKeyboard, FaBug, FaRobot, FaImage, FaRocket, FaUser} from "react-icons/fa";
+  FaHome,
+  FaCode,
+  FaBookOpen,
+  FaLayerGroup,
+  FaUserGraduate,
+  FaUsers,
+  FaPuzzlePiece,
+  FaLightbulb,
+  FaFileAlt,
+  FaTools,
+  FaPalette,
+  FaKeyboard,
+  FaBug,
+  FaRobot,
+  FaImage,
+  FaUser,
+  FaSearch,
+  FaMoon,
+  FaSun,
+  FaBars,
+} from "react-icons/fa";
 
-import { FaSearch, FaMoon, FaSun, FaBars } from "react-icons/fa";
 import "./Navbar.css";
 
 function Navbar() {
@@ -38,7 +55,11 @@ function Navbar() {
     { name: "Spot The Bug", path: "/spotthebug", icon: <FaBug /> },
     { name: "AI Resources", path: "/ai-resource", icon: <FaRobot /> },
     { name: "Tutor", path: "/tutor", icon: <FaImage /> },
-    { name: userName ? `${userName}'s Profile` : "Profile", path: "/profile", icon: <FaUser /> },
+    {
+      name: userName ? `${userName}'s Profile` : "Profile",
+      path: "/profile",
+      icon: <FaUser />,
+    },
   ];
 
   const toggleMode = () => setDarkMode(!darkMode);

@@ -18,9 +18,9 @@ import DevToolsPage from "./pages/DevToolsPage";
 import DesignToolsPage from "./pages/DesignToolsPage";
 import TypingSpeed from "./pages/TypingSpeed";
 import SpotTheBug from "./pages/SpotTheBug";
-import AIResource from "./pages/AI Resource";
 import Tutor from "./pages/Tutor";
-import "./App.css"; 
+import ResourceRecommender from "./pages/AI Resource";
+import "./App.css";
 import { ProtectedRoute } from "./utils/auth";
 
 function App() {
@@ -40,22 +40,72 @@ function App() {
       <Route path="/signup" element={<Signup />} />
 
       {/* Protected Routes */}
-      <Route path="/home" element={<ProtectedRoute>{withNavbar(Home)}</ProtectedRoute>} />
-      <Route path="/profile" element={<ProtectedRoute>{withNavbar(Profile)}</ProtectedRoute>} />
-      <Route path="/codepad" element={<ProtectedRoute>{withNavbar(CodePad)}</ProtectedRoute>} />
-      <Route path="/tutorial" element={<ProtectedRoute>{withNavbar(Tutorial)}</ProtectedRoute>} />
-      <Route path="/resources" element={<ProtectedRoute>{withNavbar(Resources)}</ProtectedRoute>} />
-      <Route path="/interview-prep" element={<ProtectedRoute>{withNavbar(InterviewPrep)}</ProtectedRoute>} />
-      <Route path="/community" element={<ProtectedRoute>{withNavbar(Community)}</ProtectedRoute>} />
-      <Route path="/devchallenges" element={<ProtectedRoute>{withNavbar(DevChallenges)}</ProtectedRoute>} />
-      <Route path="/project-idea" element={<ProtectedRoute>{withNavbar(ProjectIdea)}</ProtectedRoute>} />
-      <Route path="/resume-builder" element={<ProtectedRoute>{withNavbar(ResumeBuilder)}</ProtectedRoute>} />
-      <Route path="/devtoolspage" element={<ProtectedRoute>{withNavbar(DevToolsPage)}</ProtectedRoute>} />
-      <Route path="/designtoolspage" element={<ProtectedRoute>{withNavbar(DesignToolsPage)}</ProtectedRoute>} />
-      <Route path="/typingspeed" element={<ProtectedRoute>{withNavbar(TypingSpeed)}</ProtectedRoute>} />
-      <Route path="/spotthebug" element={<ProtectedRoute>{withNavbar(SpotTheBug)}</ProtectedRoute>} />
-      <Route path="/ai-resource" element={<ProtectedRoute>{withNavbar(require("./pages/AI Resource").default)}</ProtectedRoute>} />
-      <Route path="/tutor" element={<ProtectedRoute>{withNavbar(Tutor)}</ProtectedRoute>} />
+      <Route
+        path="/home"
+        element={<ProtectedRoute>{withNavbar(Home)}</ProtectedRoute>}
+      />
+      <Route
+        path="/profile"
+        element={<ProtectedRoute>{withNavbar(Profile)}</ProtectedRoute>}
+      />
+      <Route
+        path="/codepad"
+        element={<ProtectedRoute>{withNavbar(CodePad)}</ProtectedRoute>}
+      />
+      <Route
+        path="/tutorial"
+        element={<ProtectedRoute>{withNavbar(Tutorial)}</ProtectedRoute>}
+      />
+      <Route
+        path="/resources"
+        element={<ProtectedRoute>{withNavbar(Resources)}</ProtectedRoute>}
+      />
+      <Route
+        path="/interview-prep"
+        element={<ProtectedRoute>{withNavbar(InterviewPrep)}</ProtectedRoute>}
+      />
+      <Route
+        path="/community"
+        element={<ProtectedRoute>{withNavbar(Community)}</ProtectedRoute>}
+      />
+      <Route
+        path="/devchallenges"
+        element={<ProtectedRoute>{withNavbar(DevChallenges)}</ProtectedRoute>}
+      />
+      <Route
+        path="/project-idea"
+        element={<ProtectedRoute>{withNavbar(ProjectIdea)}</ProtectedRoute>}
+      />
+      <Route
+        path="/resume-builder"
+        element={<ProtectedRoute>{withNavbar(ResumeBuilder)}</ProtectedRoute>}
+      />
+      <Route
+        path="/devtoolspage"
+        element={<ProtectedRoute>{withNavbar(DevToolsPage)}</ProtectedRoute>}
+      />
+      <Route
+        path="/designtoolspage"
+        element={<ProtectedRoute>{withNavbar(DesignToolsPage)}</ProtectedRoute>}
+      />
+      <Route
+        path="/typingspeed"
+        element={<ProtectedRoute>{withNavbar(TypingSpeed)}</ProtectedRoute>}
+      />
+      <Route
+        path="/spotthebug"
+        element={<ProtectedRoute>{withNavbar(SpotTheBug)}</ProtectedRoute>}
+      />
+      <Route
+        path="/ai-resource"
+        element={
+          <ProtectedRoute>{withNavbar(ResourceRecommender)}</ProtectedRoute>
+        }
+      />
+      <Route
+        path="/tutor"
+        element={<ProtectedRoute>{withNavbar(Tutor)}</ProtectedRoute>}
+      />
 
       {/* Fallback */}
       <Route path="*" element={<div>404 - Page Not Found</div>} />

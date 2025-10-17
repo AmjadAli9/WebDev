@@ -12,48 +12,6 @@ const ResourceRecommender = () => {
     setResources([]);
 
     try {
-    const apiKey = process.env.REACT_APP_OPENAI_API_KEY;
-
-const handleSearch = async () => {
-  if (!topic.trim()) return;
-  setLoading(true);
-  setResources([]);
-
-  try {
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify({
-        model: "gpt-3.5-turbo",
-        messages: [
-          { role: "system", content: "You are a helpful assistant for beginners." },
-          { role: "user", content: `Suggest beginner-friendly resources to learn ${topic}` },
-        ],
-      }),
-    });
-
-    const data = await response.json();
-    const suggestions = data.choices[0].message.content
-      .split("\n")
-      .filter((line) => line.trim() !== "");
-
-    setResources(
-      suggestions.map((text, index) => ({
-        title: `Resource ${index + 1}`,
-        link: "#",
-        description: text,
-      }))
-    );
-  } catch (error) {
-    console.error(error);
-  } finally {
-    setLoading(false);
-  }
-};
-
       const mockResults = [
         {
           title: `${topic} - FreeCodeCamp Guide`,
@@ -75,7 +33,6 @@ const handleSearch = async () => {
         },
       ];
 
-      // Simulate network delay
       setTimeout(() => {
         setResources(mockResults);
         setLoading(false);
@@ -93,8 +50,7 @@ const handleSearch = async () => {
         <div className="hero-overlay">
           <h1>🔍 AI Resource Recommender</h1>
           <p>
-            Enter a topic and get curated learning resources, instantly
-            generated for you!
+            Enter a topic and get curated learning resources, instantly generated for you!
           </p>
           <div className="hero-buttons">
             <input
