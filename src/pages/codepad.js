@@ -51,13 +51,7 @@ const CodePad = () => {
           let result = "";
           const logs = [];
           
-          const mockConsole = {
-            log: (...args) => logs.push(args.join(' ')),
-            error: (...args) => logs.push('Error: ' + args.join(' ')),
-            warn: (...args) => logs.push('Warning: ' + args.join(' ')),
-            info: (...args) => logs.push('Info: ' + args.join(' ')),
-            clear: () => logs.length = 0
-          };
+          // Removed unused mockConsole
 
           // Create a sandboxed iframe for safe execution
           const iframe = document.createElement('iframe');
@@ -103,7 +97,7 @@ const CodePad = () => {
           // Wait briefly to collect messages
           await new Promise(resolve => setTimeout(resolve, 100));
           
-          window.removeEventListener('message', messageHandler);
+          window.removeEventListener('messageHandler');
           document.body.removeChild(iframe);
           
           result = logs.join('\n');
@@ -199,7 +193,7 @@ const CodePad = () => {
   const simulateSQLExecution = (code) => {
     const upperCode = code.toUpperCase();
     if (upperCode.includes('SELECT')) {
-      return `Query executed successfully.\n\n📊 Sample Result:\n+----+-------+\n| ID | NAME  |\n+----+-------+\n| 1  | Alice |\n| 2  | Bob   |\n+----+-------+\n\n⚠️ This is simulated SQL execution. Connect to a real database for actual results.`;
+      return `Query executed successfully.\n\nSample Result:\n+----+-------+\n| ID | NAME  |\n+----+-------+\n| 1  | Alice |\n| 2  | Bob   |\n+----+-------+\n\n⚠️ This is simulated SQL execution. Connect to a real database for actual results.`;
     } else if (upperCode.includes('CREATE')) {
       return `Table created successfully.\n\n⚠️ This is simulated SQL execution.`;
     } else if (upperCode.includes('INSERT')) {
@@ -419,7 +413,7 @@ const App = () => {
       minHeight: '100vh',
       color: 'white'
     }}>
-      <h1>🚀 React Counter App</h1>
+      <h1>React Counter App</h1>
       
       <div style={{
         background: 'rgba(255,255,255,0.1)',
@@ -495,7 +489,7 @@ const App = () => {
             fontSize: '16px'
           }}
         />
-        {name && <p>Hello, {name}! 👋</p>}
+        {name && <p>Hello, {name}! </p>}
       </div>
     </div>
   );
@@ -595,7 +589,7 @@ public class HelloWorld {
   return (
     <div className="codepad-container">
       <header className="codepad-hero">
-        <h1>⚡ Interactive Code Playground</h1>
+        <h1>Interactive Code Playground</h1>
         <p>Write code in multiple languages — See the results instantly!</p>
       </header>
 
@@ -609,17 +603,17 @@ public class HelloWorld {
             <option key={lang} value={lang}>{lang}</option>
           ))}
         </select>
-        <button onClick={downloadFile}>💾 Download Code</button>
-        <button onClick={clearCode}>🧹 Clear All</button>
-        <button onClick={loadExample}>📝 Load Example</button>
+        <button onClick={downloadFile}>Download Code</button>
+        <button onClick={clearCode}>Clear All</button>
+        <button onClick={loadExample}>Load Example</button>
         <button onClick={executeCode} disabled={isLoading}>
-          {isLoading ? '⏳ Running...' : '▶️ Run Code'}
+          {isLoading ? 'Running...' : 'Run Code'}
         </button>
       </div>
 
       <div className="editor-container">
         <div className="editor">
-          <h3>📝 {language} Editor</h3>
+          <h3>{language} Editor</h3>
           <CodeMirror
             value={code}
             height="400px"
@@ -632,7 +626,7 @@ public class HelloWorld {
       </div>
 
       <div className="output-container">
-        <h3>🌐 Output</h3>
+        <h3>Output</h3>
         {["HTML", "CSS", "React"].includes(language) ? (
           <iframe
             srcDoc={output}
@@ -661,7 +655,7 @@ public class HelloWorld {
             fontSize: '14px',
             lineHeight: '1.5'
           }}>
-            {isLoading ? '⏳ Executing code...' : output}
+            {isLoading ? 'Executing code...' : output}
           </pre>
         )}
       </div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import './Tutorial.css';
 
@@ -352,7 +352,7 @@ function Tutorial() {
   const [searchQuery, setSearchQuery] = useState('');
   const [expandedTutorials, setExpandedTutorials] = useState({});
 
-  const categories = ['All', ...new Set(tutorials.map(t => t.category))];
+  const categories = useMemo(() => ['All', ...new Set(tutorials.map(t => t.category))], []);
 
   // Sync URL param with selected category
   useEffect(() => {

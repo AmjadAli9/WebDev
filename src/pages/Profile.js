@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import CalendarHeatmap from "react-calendar-heatmap";
 import "react-calendar-heatmap/dist/styles.css";
 import { format, subDays } from "date-fns";
@@ -7,7 +7,9 @@ import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
   const navigate = useNavigate();
-  const today = new Date();
+
+  // ✅ useMemo to keep the same "today" object throughout renders
+  const today = useMemo(() => new Date(), []);
 
   const [profile, setProfile] = useState(null);
   const [activity, setActivity] = useState([]);
@@ -24,12 +26,10 @@ export default function Profile() {
         return;
       }
 
-      // Merge with users array if exists
       const currentUser =
         users.find((u) => u.email === loggedUser.email) || loggedUser;
       setProfile({ ...currentUser });
 
-      // Load activity
       if (savedActivity) {
         setActivity(savedActivity);
       } else {
@@ -42,7 +42,7 @@ export default function Profile() {
     };
 
     loadProfile();
-  }, [navigate, today]);
+  }, [navigate, today]); // ✅ now safe
 
   // Handle input changes
   const handleChange = (e) => {
@@ -86,7 +86,7 @@ export default function Profile() {
     localStorage.setItem("webdevhub_user", JSON.stringify(updatedProfile));
     localStorage.setItem("userActivity", JSON.stringify(updatedActivity));
 
-    setProfile(updatedProfile); // refresh UI immediately
+    setProfile(updatedProfile);
     alert("Profile saved successfully!");
   };
 
